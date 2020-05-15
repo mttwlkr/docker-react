@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true mttwlkr/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "walker-udemy-example"
+  env: "WalkerUdemyExample-env"
+  bucket_name: "elasticbeanstalk-us-east-2-772190233087"
+  bucket_path: "walker-udemy-example"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
